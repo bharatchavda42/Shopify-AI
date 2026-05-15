@@ -1,0 +1,149 @@
+.chasseur-craftsmanship {
+  background-color: var(--section-bg, #ffffff);
+  padding-top: var(--section-pt-mobile, 40px);
+  padding-bottom: var(--section-pb-mobile, 40px);
+}
+
+.chasseur-craftsmanship__inner {
+  max-width: 990px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.chasseur-craftsmanship__heading {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 46px;
+  color: var(--heading-color, #1b1918);
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.chasseur-craftsmanship__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chasseur-craftsmanship__card {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--card-bg, #f2efeb);
+  border: 1px solid var(--card-border, #d6d6d6);
+  border-radius: 13px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chasseur-craftsmanship__icon-circle {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background-color: var(--icon-bg, #857b7a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.chasseur-craftsmanship__icon-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
+.chasseur-craftsmanship__icon-img--placeholder {
+  width: 34px;
+  height: 34px;
+  opacity: 0.5;
+}
+
+.chasseur-craftsmanship__label {
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 1.28px;
+  text-transform: uppercase;
+  color: var(--label-color, #44362b);
+  margin: 0;
+}
+
+.chasseur-craftsmanship__card-heading {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: var(--card-title-color, #3c2d25);
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  margin: 0;
+}
+
+.chasseur-craftsmanship__body {
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--card-body-color, #44362b);
+}
+
+.chasseur-craftsmanship__body p {
+  margin: 0;
+}
+
+.chasseur-craftsmanship__footnote {
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 22px;
+  color: var(--footnote-color, #000000);
+  margin: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .chasseur-craftsmanship__heading {
+    font-size: 42px;
+    line-height: 54px;
+  }
+
+  .chasseur-craftsmanship__card-heading {
+    font-size: 26px;
+    line-height: 34px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .chasseur-craftsmanship {
+    padding-top: var(--section-pt, 80px);
+    padding-bottom: var(--section-pb, 80px);
+  }
+
+  .chasseur-craftsmanship__inner {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .chasseur-craftsmanship__heading {
+    font-size: 48px;
+    line-height: 62px;
+    margin-bottom: 48px;
+  }
+
+  .chasseur-craftsmanship__cards {
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .chasseur-craftsmanship__card-heading {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}

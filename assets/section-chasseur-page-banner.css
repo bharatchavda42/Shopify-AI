@@ -1,0 +1,86 @@
+.chasseur-page-banner {
+  position: relative;
+  height: var(--banner-height-mobile, 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+@media screen and (min-width: 990px) {
+  .chasseur-page-banner {
+    height: var(--banner-height, 300px);
+  }
+}
+
+.chasseur-page-banner__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.chasseur-page-banner__bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.chasseur-page-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--overlay-color, #000);
+  opacity: var(--overlay-opacity, 0.5);
+}
+
+.chasseur-page-banner__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.chasseur-page-banner__heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.292;
+  letter-spacing: 0;
+  color: var(--heading-color, #fff);
+  margin: 0;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+}
+
+.chasseur-page-banner__breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chasseur-page-banner__crumb-link {
+  color: var(--breadcrumb-color, #fff);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.chasseur-page-banner__crumb-link:hover {
+  opacity: 0.75;
+}
+
+.chasseur-page-banner__crumb-sep,
+.chasseur-page-banner__crumb-current {
+  color: var(--separator-color, #e0dad7);
+}

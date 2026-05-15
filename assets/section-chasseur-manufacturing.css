@@ -1,0 +1,175 @@
+.chasseur-manufacturing {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--section-height-mobile, 400px);
+}
+
+@media screen and (min-width: 990px) {
+  .chasseur-manufacturing {
+    flex-direction: row;
+    min-height: var(--section-height, 516px);
+    height: var(--section-height, 516px);
+  }
+}
+
+/* Left — image panel */
+.chasseur-manufacturing__left {
+  flex: 0 0 50%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom, var(--left-grad-start, #ded6cc) 0%, #ffffff 55.26%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 260px;
+}
+
+@media screen and (min-width: 990px) {
+  .chasseur-manufacturing__left--reverse {
+    order: 2;
+  }
+}
+
+.chasseur-manufacturing__logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -130%);
+  z-index: 1;
+}
+
+.chasseur-manufacturing__logo-img {
+  width: 170px;
+  height: auto;
+  display: block;
+}
+
+.chasseur-manufacturing__product-img-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.chasseur-manufacturing__product-img {
+  width: 100%;
+  height: auto;
+  max-height: var(--section-height, 516px);
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+/* Right — text panel */
+.chasseur-manufacturing__right {
+  flex: 0 0 50%;
+  background-color: var(--right-bg, #353131);
+  display: flex;
+  align-items: center;
+  padding: 50px 40px;
+}
+
+@media screen and (min-width: 990px) {
+  .chasseur-manufacturing__right {
+    padding: 50px 50px 50px 50px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .chasseur-manufacturing__right {
+    padding: 50px 210px 50px 50px;
+  }
+}
+
+.chasseur-manufacturing__content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 650px;
+}
+
+/* Eyebrow */
+.chasseur-manufacturing__eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.chasseur-manufacturing__eyebrow-line {
+  display: block;
+  width: 74px;
+  height: 1px;
+  background-color: var(--eyebrow-color, #fff);
+  flex-shrink: 0;
+}
+
+.chasseur-manufacturing__eyebrow {
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--eyebrow-color, #fff);
+}
+
+/* Heading */
+.chasseur-manufacturing__heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 400;
+  line-height: 1.306;
+  color: var(--heading-color, #fff);
+  margin: 0;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+}
+
+/* Body */
+.chasseur-manufacturing__body {
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body-color, #e3e3e3);
+}
+
+.chasseur-manufacturing__body p {
+  margin: 0;
+}
+
+/* CTA button */
+.chasseur-manufacturing__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.28px;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.chasseur-manufacturing__btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.chasseur-manufacturing__btn svg {
+  transition: transform 0.25s ease;
+}
+
+.chasseur-manufacturing__btn:hover svg {
+  transform: translateX(3px);
+}

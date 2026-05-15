@@ -1,0 +1,188 @@
+{{ 'wellness.css' | asset_url | stylesheet_tag }}
+
+<footer class="wc-footer" role="contentinfo" style="
+  --wc-primary: {{ section.settings.brand_primary }};
+">
+  <div class="wc-page-width">
+    <div class="wc-footer__top">
+      <div class="wc-footer__brand">
+        <a href="{{ routes.root_url }}" class="wc-footer__logo" aria-label="{{ shop.name | escape }}">
+          {%- if section.settings.logo != blank -%}
+            <img
+              src="{{ section.settings.logo | image_url: width: 240 }}"
+              alt="{{ shop.name | escape }}"
+              loading="lazy"
+              decoding="async"
+              width="{{ section.settings.logo.width }}"
+              height="{{ section.settings.logo.height }}"
+              style="max-width: {{ section.settings.logo_width }}px; height:auto;"
+            >
+          {%- else -%}
+            <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="22" fill="{{ section.settings.brand_primary }}" opacity=".12"/>
+              <path d="M16 14 Q20 10 28 14 Q24 22 22 30 Q18 28 16 14Z" fill="{{ section.settings.brand_primary }}"/>
+              <path d="M30 16 Q36 18 36 26 Q34 30 30 32 Q30 24 28 16 Z" fill="#B69152"/>
+            </svg>
+          {%- endif -%}
+          {%- if section.settings.show_logo_text -%}
+            <span class="wc-header__logo-text">
+              <span class="wc-header__logo-title">{{ section.settings.logo_title | escape }}</span>
+              <span class="wc-header__logo-sub">{{ section.settings.logo_subtitle | escape }}</span>
+            </span>
+          {%- endif -%}
+        </a>
+
+        {%- if section.settings.address != blank -%}
+          <p class="wc-footer__tagline">{{ section.settings.address }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.phone != blank -%}
+          <a class="wc-footer__phone" href="tel:{{ section.settings.phone | replace: ' ', '' | replace: '-', '' | replace: '(', '' | replace: ')', '' }}">
+            {{ section.settings.phone | escape }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="wc-footer__socials" aria-label="Social media">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'social' and block.settings.url != blank -%}
+                <a href="{{ block.settings.url }}" target="_blank" rel="noopener" aria-label="{{ block.settings.platform | escape }}" {{ block.shopify_attributes }}>
+                  {%- case block.settings.platform -%}
+                    {%- when 'facebook' -%}
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.4 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.6-1.5h1.4V4.4c-.2 0-1-.1-2-.1-2.1 0-3.5 1.3-3.5 3.6v2h-2.4v3h2.4V21h2.5z"/></svg>
+                    {%- when 'instagram' -%}
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+                    {%- when 'tiktok' -%}
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 3h2.6c.3 1.6 1.5 2.9 3.1 3.2v2.5c-1.2 0-2.4-.3-3.4-.9v6.5c0 3.1-2.5 5.6-5.6 5.6S5.1 17.4 5.1 14.3s2.5-5.6 5.6-5.6c.3 0 .6 0 .9.1V11c-.3-.1-.6-.1-.9-.1-1.9 0-3.4 1.5-3.4 3.4S8.8 17.7 10.7 17.7s3.4-1.5 3.4-3.4V3z"/></svg>
+                    {%- when 'linkedin' -%}
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 8.5v10h-3v-10h3zM5 3.5C3.9 3.5 3 4.4 3 5.5S3.9 7.5 5 7.5 7 6.6 7 5.5 6.1 3.5 5 3.5zm15.5 15v-5.4c0-2.7-1.4-4-3.3-4-1.5 0-2.2.8-2.6 1.4v-1.2H12c0 .8 0 10 0 10h3v-5.5c0-.3 0-.5.1-.7.2-.5.7-1.1 1.5-1.1 1.1 0 1.5.8 1.5 2.1v5.2h3z"/></svg>
+                    {%- when 'youtube' -%}
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 7.6s-.2-1.4-.8-2c-.7-.8-1.6-.8-2-.9C16 4.5 12 4.5 12 4.5s-4 0-6.7.2c-.4.1-1.3.1-2 .9-.6.6-.8 2-.8 2S2.3 9.3 2.3 11v1.8c0 1.7.2 3.4.2 3.4s.2 1.4.8 2c.7.8 1.7.8 2.1.9 1.5.1 6.6.2 6.6.2s4 0 6.7-.2c.4-.1 1.3-.1 2-.9.6-.6.8-2 .8-2s.2-1.7.2-3.4V11c0-1.7-.2-3.4-.2-3.4zM10 14.8V8.6l5.2 3.1-5.2 3.1z"/></svg>
+                    {%- when 'google' -%}
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 12.2c0-.7-.1-1.3-.2-2H12v3.8h5.4c-.2 1.2-.9 2.2-2 2.9v2.4h3.2c1.9-1.7 2.9-4.3 2.9-7.1zM12 21c2.7 0 4.9-.9 6.6-2.4l-3.2-2.4c-.9.6-2 1-3.4 1-2.6 0-4.8-1.7-5.6-4.1H3.1v2.5C4.7 18.9 8.1 21 12 21zm-5.6-7.9c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V6.6H3.1C2.4 8.1 2 9.7 2 11.1c0 1.4.4 3 1.1 4.5l3.3-2.5zM12 5c1.5 0 2.8.5 3.8 1.5l2.8-2.8C16.9 2.1 14.7 1 12 1 8.1 1 4.7 3.1 3.1 6.6l3.3 2.5C7.2 6.7 9.4 5 12 5z"/></svg>
+                    {%- else -%}
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+                  {%- endcase -%}
+                </a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.reviews_label != blank -%}
+          <a href="{{ section.settings.reviews_link }}" class="wc-btn wc-btn--ghost" style="padding:0; font-size:14px;">
+            {{ section.settings.reviews_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'menu' -%}
+          <div {{ block.shopify_attributes }}>
+            <h4 class="wc-footer__col-title">{{ block.settings.heading | escape }}</h4>
+            <ul class="wc-footer__links">
+              {%- for link in block.settings.menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="wc-footer__legal">
+      {%- if section.settings.disclaimer != blank -%}
+        <p>{{ section.settings.disclaimer }}</p>
+      {%- endif -%}
+      {%- if section.settings.emergency_text != blank -%}
+        <p class="wc-footer__emergency">{{ section.settings.emergency_text }}</p>
+      {%- endif -%}
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. {{ section.settings.rights_text | escape }}</p>
+      {%- if section.settings.legal_menu != blank -%}
+        <ul class="wc-footer__links" style="grid-auto-flow: column; display:flex; gap:18px; flex-wrap:wrap; justify-content:center;">
+          {%- for link in section.settings.legal_menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Wellness footer",
+  "tag": "section",
+  "class": "shopify-section--wellness-footer",
+  "settings": [
+    { "type": "header", "content": "Logo" },
+    { "type": "image_picker", "id": "logo", "label": "Logo image" },
+    { "type": "range", "id": "logo_width", "label": "Logo width", "min": 40, "max": 200, "step": 10, "unit": "px", "default": 60 },
+    { "type": "checkbox", "id": "show_logo_text", "label": "Show wordmark", "default": true },
+    { "type": "text", "id": "logo_title", "label": "Wordmark title", "default": "CHARLOTTE" },
+    { "type": "text", "id": "logo_subtitle", "label": "Wordmark subtitle", "default": "Weight loss & wellness clinic" },
+
+    { "type": "header", "content": "Contact" },
+    { "type": "richtext", "id": "address", "label": "Address / tagline", "default": "<p>Charlotte Weight Loss and Wellness Clinic, Charlotte, NC</p>" },
+    { "type": "text", "id": "phone", "label": "Phone number", "default": "(984) 304-2060" },
+
+    { "type": "header", "content": "Reviews link" },
+    { "type": "text", "id": "reviews_label", "label": "Label", "default": "View Our Reviews" },
+    { "type": "url", "id": "reviews_link", "label": "URL" },
+
+    { "type": "header", "content": "Legal" },
+    { "type": "richtext", "id": "disclaimer", "label": "Disclaimer", "default": "<p>This website is for informational purposes only and does not constitute medical advice. Always consult a qualified healthcare provider for diagnosis and treatment.</p>" },
+    { "type": "text", "id": "emergency_text", "label": "Emergency text", "default": "For medical emergencies, call 911" },
+    { "type": "text", "id": "rights_text", "label": "Rights text", "default": "All rights reserved." },
+    { "type": "link_list", "id": "legal_menu", "label": "Legal links" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "brand_primary", "label": "Brand primary", "default": "#2C6E69" }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu column",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Quick links" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social link",
+      "settings": [
+        {
+          "type": "select",
+          "id": "platform",
+          "label": "Platform",
+          "default": "facebook",
+          "options": [
+            { "value": "facebook", "label": "Facebook" },
+            { "value": "instagram", "label": "Instagram" },
+            { "value": "tiktok", "label": "TikTok" },
+            { "value": "linkedin", "label": "LinkedIn" },
+            { "value": "youtube", "label": "YouTube" },
+            { "value": "google", "label": "Google" }
+          ]
+        },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wellness footer",
+      "blocks": [
+        { "type": "social", "settings": { "platform": "facebook" } },
+        { "type": "social", "settings": { "platform": "instagram" } },
+        { "type": "social", "settings": { "platform": "tiktok" } },
+        { "type": "social", "settings": { "platform": "linkedin" } },
+        { "type": "social", "settings": { "platform": "google" } },
+        { "type": "menu", "settings": { "heading": "Quick links" } }
+      ]
+    }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

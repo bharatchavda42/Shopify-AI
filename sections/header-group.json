@@ -8,7 +8,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "Now accepting new patients in Charlotte, NC",
             "text_alignment": "center",
             "color_scheme": "scheme-1",
             "link": ""
@@ -20,20 +20,16 @@
       ]
     },
     "header": {
-      "type": "header",
+      "type": "wellness-header",
       "settings": {
-        "color_scheme": "scheme-1",
-        "logo_position": "middle-left",
+        "show_logo_text": true,
+        "logo_title": "CHARLOTTE",
+        "logo_subtitle": "Weight loss & wellness clinic",
         "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
-        "show_line_separator": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "mobile_logo_position": "center",
-        "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "cta_label": "Book Consultation",
+        "brand_primary": "#2C6E69",
+        "text_color": "#1F2937",
+        "logo_width": 60
       }
     }
   },

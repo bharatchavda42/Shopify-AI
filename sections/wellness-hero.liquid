@@ -1,0 +1,138 @@
+{{ 'wellness.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="wc-hero"
+  style="
+    --wc-primary: {{ section.settings.brand_primary }};
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <style>
+    @media (min-width: 750px) {
+      #shopify-section-{{ section.id }} .wc-hero {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  </style>
+  <div class="wc-page-width">
+    <div class="wc-hero__grid">
+      <div class="wc-hero__media">
+        {%- if section.settings.image != blank -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 1200 }}"
+            srcset="{{ section.settings.image | image_url: width: 600 }} 600w, {{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1200 }} 1200w, {{ section.settings.image | image_url: width: 1600 }} 1600w"
+            sizes="(min-width: 990px) 55vw, 100vw"
+            alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          >
+        {%- else -%}
+          <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:var(--wc-primary);">
+            <svg viewBox="0 0 80 80" width="80" height="80" fill="currentColor" opacity=".5" aria-hidden="true">
+              <path d="M40 16a12 12 0 100 24 12 12 0 000-24zm0 28c-9 0-22 4.5-22 13v3h44v-3c0-8.5-13-13-22-13z"/>
+            </svg>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="wc-hero__content">
+        {%- if section.settings.pill_text != blank -%}
+          <span class="wc-hero__pill">
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><circle cx="8" cy="8" r="3"/></svg>
+            {{ section.settings.pill_text | escape }}
+          </span>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h1 class="wc-heading wc-heading--xl">{{ section.settings.heading | escape }}</h1>
+        {%- endif -%}
+
+        {%- if section.settings.subheading != blank -%}
+          <div class="wc-text wc-text--lead">{{ section.settings.subheading }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="wc-hero__features">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'feature' -%}
+                <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="wc-hero__ctas">
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="wc-btn wc-btn--primary">
+              {{ section.settings.button_label | escape }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button_label_2 != blank -%}
+            <a href="{{ section.settings.button_link_2 | default: '#' }}" class="wc-btn wc-btn--outline">
+              {{ section.settings.button_label_2 | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.footnote != blank -%}
+          <p class="wc-text wc-text--small" style="margin-top:18px;">{{ section.settings.footnote }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wellness hero",
+  "tag": "section",
+  "class": "shopify-section--wellness-hero",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "pill_text", "label": "Pill label", "default": "Virtual and in-office consultations" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Physician Supervised Medical Weight Loss in Charlotte" },
+    { "type": "richtext", "id": "subheading", "label": "Subheading", "default": "<p>Structured, medical-grade weight loss with lab monitoring and ongoing physician support.</p>" },
+    { "type": "richtext", "id": "footnote", "label": "Footnote text", "default": "<p>Insurance accepted for in-office visits • Most patients begin within 1–2 weeks • Board-certified physicians on staff</p>" },
+    { "type": "header", "content": "Hero image" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "header", "content": "Primary button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Start Your Medical Weight Loss Plan" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "header", "content": "Secondary button" },
+    { "type": "text", "id": "button_label_2", "label": "Button label" },
+    { "type": "url", "id": "button_link_2", "label": "Button link" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "brand_primary", "label": "Brand primary", "default": "#2C6E69" },
+    { "type": "header", "content": "Section padding" },
+    { "type": "range", "id": "padding_top", "label": "Top (desktop)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom (desktop)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top (mobile)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom (mobile)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 32 }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Bullet feature",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Personalized treatment plan" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wellness hero",
+      "blocks": [
+        { "type": "feature", "settings": { "text": "Personalized treatment plan" } },
+        { "type": "feature", "settings": { "text": "Lab monitoring & physician oversight" } },
+        { "type": "feature", "settings": { "text": "Insurance accepted for in-office care" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

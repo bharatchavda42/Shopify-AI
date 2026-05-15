@@ -1,0 +1,189 @@
+.chasseur-colour-carousel {
+  background-color: var(--section-bg, #fff);
+  padding-top: var(--section-pt-mobile, 40px);
+  padding-bottom: var(--section-pb-mobile, 40px);
+}
+
+@media screen and (min-width: 990px) {
+  .chasseur-colour-carousel {
+    padding-top: var(--section-pt, 80px);
+    padding-bottom: var(--section-pb, 80px);
+  }
+}
+
+.chasseur-colour-carousel__inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media screen and (min-width: 990px) {
+  .chasseur-colour-carousel__inner {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.chasseur-colour-carousel__heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.292;
+  color: var(--heading-color, #101828);
+  text-align: center;
+  margin: 0;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+}
+
+/* Track */
+.chasseur-colour-carousel__track-wrap {
+  overflow: hidden;
+  width: 100%;
+}
+
+.chasseur-colour-carousel__track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Individual swatch */
+.chasseur-colour-carousel__swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex: 0 0 auto;
+  width: var(--swatch-size, 230px);
+}
+
+.chasseur-colour-carousel__swatch-link {
+  display: block;
+  text-decoration: none;
+}
+
+.chasseur-colour-carousel__swatch-circle {
+  width: var(--swatch-size, 230px);
+  height: var(--swatch-size, 230px);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--swatch-bg, #f2efeb);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chasseur-colour-carousel__swatch-link:hover .chasseur-colour-carousel__swatch-circle {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.chasseur-colour-carousel__swatch-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.chasseur-colour-carousel__swatch-placeholder {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.chasseur-colour-carousel__color-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--color-name-color, #44362b);
+  text-align: center;
+  margin: 0;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  transition: color 0.2s ease;
+}
+
+.chasseur-colour-carousel__swatch-link:hover ~ .chasseur-colour-carousel__color-name {
+  color: #987e52;
+}
+
+/* Controls */
+.chasseur-colour-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.chasseur-colour-carousel__btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid #d6d6d6;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  flex-shrink: 0;
+  color: #44362b;
+}
+
+.chasseur-colour-carousel__btn:hover {
+  background-color: #44362b;
+  border-color: #44362b;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.chasseur-colour-carousel__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Dots */
+.chasseur-colour-carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chasseur-colour-carousel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--dot-inactive, #e3e3e3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.chasseur-colour-carousel__dot.is-active {
+  width: 30px;
+  background-color: var(--dot-active, #b0976d);
+}
+
+/* Mobile: scrollable on small screens */
+@media screen and (max-width: 749px) {
+  .chasseur-colour-carousel__swatch {
+    width: calc(var(--swatch-size, 230px) * 0.55);
+  }
+
+  .chasseur-colour-carousel__swatch-circle {
+    width: calc(var(--swatch-size, 230px) * 0.55);
+    height: calc(var(--swatch-size, 230px) * 0.55);
+  }
+
+  .chasseur-colour-carousel__color-name {
+    font-size: 18px;
+  }
+}

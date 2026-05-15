@@ -3,47 +3,57 @@
   "type": "footer",
   "sections": {
     "footer": {
-      "type": "footer",
+      "type": "wellness-footer",
       "blocks": {
-        "footer-0": {
-          "type": "link_list",
+        "social-facebook": { "type": "social", "settings": { "platform": "facebook", "url": "" } },
+        "social-instagram": { "type": "social", "settings": { "platform": "instagram", "url": "" } },
+        "social-tiktok": { "type": "social", "settings": { "platform": "tiktok", "url": "" } },
+        "social-linkedin": { "type": "social", "settings": { "platform": "linkedin", "url": "" } },
+        "social-google": { "type": "social", "settings": { "platform": "google", "url": "" } },
+        "menu-quick": {
+          "type": "menu",
           "settings": {
             "heading": "Quick links",
             "menu": "footer"
           }
         },
-        "footer-1": {
-          "type": "link_list",
+        "menu-services": {
+          "type": "menu",
+          "settings": {
+            "heading": "Services",
+            "menu": "main-menu"
+          }
+        },
+        "menu-info": {
+          "type": "menu",
           "settings": {
             "heading": "Info",
             "menu": "footer"
           }
-        },
-        "footer-2": {
-          "type": "text",
-          "settings": {
-            "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
-          }
         }
       },
       "block_order": [
-        "footer-0",
-        "footer-1",
-        "footer-2"
+        "social-facebook",
+        "social-instagram",
+        "social-tiktok",
+        "social-linkedin",
+        "social-google",
+        "menu-quick",
+        "menu-services",
+        "menu-info"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "show_social": true,
-        "enable_country_selector": false,
-        "enable_language_selector": false,
-        "payment_enable": true,
-        "show_policy": false,
-        "margin_top": 48,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "show_logo_text": true,
+        "logo_title": "CHARLOTTE",
+        "logo_subtitle": "Weight loss & wellness clinic",
+        "address": "<p>Charlotte Weight Loss and Wellness Clinic, Charlotte, NC</p>",
+        "phone": "(984) 304-2060",
+        "reviews_label": "View Our Reviews",
+        "disclaimer": "<p>This website is for informational purposes only and does not constitute medical advice. Always consult a qualified healthcare provider for diagnosis and treatment.</p>",
+        "emergency_text": "For medical emergencies, call 911",
+        "rights_text": "All rights reserved.",
+        "brand_primary": "#2C6E69",
+        "logo_width": 60
       }
     }
   },
