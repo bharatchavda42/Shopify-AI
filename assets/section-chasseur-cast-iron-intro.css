@@ -1,0 +1,133 @@
+.chasseur-cast-iron-intro {
+  position: relative;
+  background-color: var(--section-bg, #f2efeb);
+  padding-top: var(--section-pt-mobile, 32px);
+  padding-bottom: var(--section-pb-mobile, 32px);
+  overflow: hidden;
+}
+
+@media screen and (min-width: 990px) {
+  .chasseur-cast-iron-intro {
+    padding-top: var(--section-pt, 80px);
+    padding-bottom: var(--section-pb, 80px);
+  }
+}
+
+/* Background image */
+.chasseur-cast-iron-intro__bg-image {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.chasseur-cast-iron-intro__bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: var(--bg-image-opacity, 0.5);
+}
+
+.chasseur-cast-iron-intro__bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--section-bg, #f2efeb) 0%, transparent 100%);
+}
+
+/* Inner layout */
+.chasseur-cast-iron-intro__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media screen and (min-width: 990px) {
+  .chasseur-cast-iron-intro__inner {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.chasseur-cast-iron-intro__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  max-width: 1012px;
+  margin: 0 auto;
+}
+
+/* Eyebrow */
+.chasseur-cast-iron-intro__eyebrow {
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--eyebrow-color, #44362b);
+  margin: 0;
+}
+
+/* Heading */
+.chasseur-cast-iron-intro__heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.292;
+  color: var(--heading-color, #1b1918);
+  margin: 0;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+}
+
+/* Body */
+.chasseur-cast-iron-intro__body {
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body-color, #44362b);
+  max-width: 1012px;
+}
+
+.chasseur-cast-iron-intro__body p {
+  margin: 0;
+}
+
+/* CTA button */
+.chasseur-cast-iron-intro__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #987e52;
+  border-radius: 12px;
+  padding: 16px 32px;
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.28px;
+  text-transform: uppercase;
+  color: #44362b;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.chasseur-cast-iron-intro__btn:hover {
+  background-color: #987e52;
+  color: #fff;
+}
+
+.chasseur-cast-iron-intro__btn svg {
+  transition: transform 0.25s ease;
+}
+
+.chasseur-cast-iron-intro__btn:hover svg {
+  transform: translateX(3px);
+}

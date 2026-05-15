@@ -1,0 +1,161 @@
+{{ 'section-chasseur-benefits-split.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="chasseur-benefits-split"
+  style="
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+    --section-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --section-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="chasseur-benefits-split__frame">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'benefit' -%}
+          <div
+            class="chasseur-benefits-split__row{% if block.settings.image_position == 'left' %} chasseur-benefits-split__row--img-left{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div
+              class="chasseur-benefits-split__text"
+              style="
+                background-color: {{ block.settings.panel_color }};
+                --eyebrow-color: {{ block.settings.eyebrow_color }};
+                --heading-color: {{ block.settings.heading_color }};
+                --body-color: {{ block.settings.body_color }};
+              "
+            >
+              <div class="chasseur-benefits-split__content">
+                {%- if block.settings.eyebrow != blank -%}
+                  <div class="chasseur-benefits-split__eyebrow-group">
+                    <div class="chasseur-benefits-split__eyebrow-row">
+                      <span class="chasseur-benefits-split__line" aria-hidden="true"></span>
+                      <span class="chasseur-benefits-split__eyebrow">{{ block.settings.eyebrow | escape }}</span>
+                    </div>
+                    {%- if block.settings.heading != blank -%}
+                      <h2 class="chasseur-benefits-split__heading">{{ block.settings.heading | escape }}</h2>
+                    {%- endif -%}
+                  </div>
+                {%- elsif block.settings.heading != blank -%}
+                  <h2 class="chasseur-benefits-split__heading">{{ block.settings.heading | escape }}</h2>
+                {%- endif -%}
+
+                {%- if block.settings.body != blank -%}
+                  <div class="chasseur-benefits-split__body">{{ block.settings.body }}</div>
+                {%- endif -%}
+
+                {%- if block.settings.button_label != blank -%}
+                  <a href="{{ block.settings.button_url | default: '#' }}" class="chasseur-benefits-split__btn">
+                    {{ block.settings.button_label | escape }}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                {%- endif -%}
+              </div>
+            </div>
+
+            <div
+              class="chasseur-benefits-split__image"
+              style="--grad-start: {{ block.settings.gradient_color }};"
+            >
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1500
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'chasseur-benefits-split__img',
+                    widths: '750, 960, 1200, 1500',
+                    sizes: '(min-width: 990px) 50vw, 100vw',
+                    alt: block.settings.image.alt | escape
+                }}
+              {%- endif -%}
+            </div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Benefits Split",
+  "tag": "section",
+  "class": "shopify-section--chasseur-benefits-split",
+  "settings": [
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top (desktop)", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom (desktop)", "default": 80 },
+    { "type": "range", "id": "padding_top_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding top (mobile)", "default": 40 },
+    { "type": "range", "id": "padding_bottom_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding bottom (mobile)", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit row",
+      "settings": [
+        { "type": "header", "content": "Content" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow label" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "richtext", "id": "body", "label": "Body text" },
+        { "type": "header", "content": "CTA button" },
+        { "type": "text", "id": "button_label", "label": "Button label", "info": "Leave blank to hide" },
+        { "type": "url", "id": "button_url", "label": "Button URL" },
+        { "type": "header", "content": "Image" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "select", "id": "image_position", "label": "Image side",
+          "options": [
+            { "value": "right", "label": "Right (text left, image right)" },
+            { "value": "left", "label": "Left (image left, text right)" }
+          ],
+          "default": "right"
+        },
+        { "type": "header", "content": "Colours" },
+        { "type": "color", "id": "panel_color", "label": "Text panel background", "default": "#353131" },
+        { "type": "color", "id": "gradient_color", "label": "Image panel gradient start", "default": "#DED6CC" },
+        { "type": "color", "id": "eyebrow_color", "label": "Eyebrow colour", "default": "#FFFFFF" },
+        { "type": "color", "id": "heading_color", "label": "Heading colour", "default": "#FFFFFF" },
+        { "type": "color", "id": "body_color", "label": "Body colour", "default": "#E3E3E3" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Split",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Heat Retention",
+            "heading": "Dishes stay hot at the table",
+            "body": "<p>Enamelled cast iron warms gradually, accumulates heat evenly, and retains it for a long time — so meals arrive perfectly warm and stay that way throughout dinner.</p>",
+            "image_position": "right",
+            "panel_color": "#353131",
+            "gradient_color": "#DED6CC",
+            "eyebrow_color": "#FFFFFF",
+            "heading_color": "#FFFFFF",
+            "body_color": "#E3E3E3"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Moisture Lock",
+            "heading": "Moist and delicious cooking",
+            "body": "<p>Enamelled cast iron is perfect for grilling, sautéing, roasting... and stewing. After the food has been braised, the water vapour from the stew condenses upon contact with the cooler lid and forms droplets. These droplets then proceed to evenly and continuously baste the food thanks to the ridges inside the lid.</p>",
+            "image_position": "left",
+            "panel_color": "#353131",
+            "gradient_color": "#DED6CC",
+            "eyebrow_color": "#FFFFFF",
+            "heading_color": "#FFFFFF",
+            "body_color": "#E3E3E3"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,117 @@
+{{ 'section-chasseur-heat-sources.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="chasseur-heat-sources"
+  style="
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+    --section-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --section-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --section-bg: {{ section.settings.background_color }};
+    --heading-color: {{ section.settings.heading_color }};
+    --eyebrow-color: {{ section.settings.eyebrow_color }};
+    --label-color: {{ section.settings.label_color }};
+  "
+>
+  <div class="chasseur-heat-sources__inner">
+
+    <div class="chasseur-heat-sources__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="chasseur-heat-sources__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="chasseur-heat-sources__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="chasseur-heat-sources__grid">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'source' -%}
+              <div class="chasseur-heat-sources__item" {{ block.shopify_attributes }}>
+                <div class="chasseur-heat-sources__icon-wrap">
+                  {%- if block.settings.icon_image != blank -%}
+                    {{
+                      block.settings.icon_image
+                      | image_url: width: 420
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'chasseur-heat-sources__icon-img',
+                        widths: '210, 420',
+                        sizes: '210px',
+                        alt: block.settings.label | escape
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'chasseur-heat-sources__icon-img chasseur-heat-sources__icon-img--placeholder' }}
+                  {%- endif -%}
+                </div>
+                {%- if block.settings.label != blank -%}
+                  <p class="chasseur-heat-sources__label">{{ block.settings.label | escape }}</p>
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Heat Sources",
+  "tag": "section",
+  "class": "shopify-section--chasseur-heat-sources",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label", "default": "Universal Compatibility" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Compatible with All Heat Sources" },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background_color", "label": "Section background", "default": "#353131" },
+    { "type": "color", "id": "eyebrow_color", "label": "Eyebrow colour", "default": "#FFFFFF" },
+    { "type": "color", "id": "heading_color", "label": "Heading colour", "default": "#FFFFFF" },
+    { "type": "color", "id": "label_color", "label": "Icon label colour", "default": "#FFFFFF" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Padding top (desktop)", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Padding bottom (desktop)", "default": 100 },
+    { "type": "range", "id": "padding_top_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding top (mobile)", "default": 48 },
+    { "type": "range", "id": "padding_bottom_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding bottom (mobile)", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "source",
+      "name": "Heat source",
+      "settings": [
+        { "type": "image_picker", "id": "icon_image", "label": "Icon image" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Heat Source" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heat Sources",
+      "settings": {
+        "eyebrow": "Universal Compatibility",
+        "heading": "Compatible with All Heat Sources",
+        "background_color": "#353131",
+        "eyebrow_color": "#FFFFFF",
+        "heading_color": "#FFFFFF",
+        "label_color": "#FFFFFF",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      },
+      "blocks": [
+        { "type": "source", "settings": { "label": "INDUCTION" } },
+        { "type": "source", "settings": { "label": "GAS" } },
+        { "type": "source", "settings": { "label": "ELECTRICITY" } },
+        { "type": "source", "settings": { "label": "VITROCERAMIC\n(RADIANT)" } },
+        { "type": "source", "settings": { "label": "VITROCERAMIC\n(HALOGEN)" } },
+        { "type": "source", "settings": { "label": "OVEN" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

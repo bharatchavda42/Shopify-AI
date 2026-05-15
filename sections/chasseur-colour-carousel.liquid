@@ -1,0 +1,173 @@
+{{ 'section-chasseur-colour-carousel.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="chasseur-colour-carousel"
+  style="
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+    --section-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --section-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --section-bg: {{ section.settings.background_color }};
+    --heading-color: {{ section.settings.heading_color }};
+    --swatch-size: {{ section.settings.swatch_size }}px;
+    --swatch-bg: {{ section.settings.swatch_background }};
+    --color-name-color: {{ section.settings.color_name_color }};
+    --dot-active: {{ section.settings.dot_active_color }};
+    --dot-inactive: {{ section.settings.dot_inactive_color }};
+  "
+>
+  <div class="chasseur-colour-carousel__inner page-width">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="chasseur-colour-carousel__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div
+      class="chasseur-colour-carousel__track-wrap"
+      data-colour-carousel
+    >
+      <div class="chasseur-colour-carousel__track" data-carousel-track>
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'colour' -%}
+              <div class="chasseur-colour-carousel__swatch" data-carousel-slide {{ block.shopify_attributes }}>
+                <a
+                  href="{{ block.settings.url | default: '#' }}"
+                  class="chasseur-colour-carousel__swatch-link"
+                  aria-label="{{ block.settings.color_name | escape }}"
+                >
+                  <div class="chasseur-colour-carousel__swatch-circle">
+                    {%- if block.settings.image != blank -%}
+                      {{
+                        block.settings.image
+                        | image_url: width: 460
+                        | image_tag:
+                          loading: 'lazy',
+                          class: 'chasseur-colour-carousel__swatch-img',
+                          widths: '230, 460',
+                          sizes: '230px',
+                          alt: block.settings.image.alt | default: block.settings.color_name | escape
+                      }}
+                    {%- else -%}
+                      <div class="chasseur-colour-carousel__swatch-placeholder" style="background-color: {{ block.settings.swatch_color }};"></div>
+                    {%- endif -%}
+                  </div>
+                </a>
+                {%- if block.settings.color_name != blank -%}
+                  <p class="chasseur-colour-carousel__color-name">{{ block.settings.color_name | escape }}</p>
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="chasseur-colour-carousel__controls" aria-label="Carousel controls">
+      <button
+        type="button"
+        class="chasseur-colour-carousel__btn chasseur-colour-carousel__btn--prev"
+        data-carousel-prev
+        aria-label="{{ section.settings.prev_label | default: 'Previous' | escape }}"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="chasseur-colour-carousel__dots" data-carousel-dots aria-hidden="true">
+        {%- assign dot_count = section.blocks.size | divided_by: section.settings.items_per_slide | ceil -%}
+        {%- for i in (1..dot_count) -%}
+          <button
+            type="button"
+            class="chasseur-colour-carousel__dot{% if forloop.first %} is-active{% endif %}"
+            data-carousel-dot="{{ forloop.index0 }}"
+            aria-label="Go to slide {{ forloop.index }}"
+          ></button>
+        {%- endfor -%}
+      </div>
+
+      <button
+        type="button"
+        class="chasseur-colour-carousel__btn chasseur-colour-carousel__btn--next"
+        data-carousel-next
+        aria-label="{{ section.settings.next_label | default: 'Next' | escape }}"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<script src="{{ 'section-chasseur-colour-carousel.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Colour Carousel",
+  "tag": "section",
+  "class": "shopify-section--chasseur-colour-carousel",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "heading", "label": "Section heading", "default": "The Colours of Chasseur" },
+    { "type": "text", "id": "prev_label", "label": "Previous button label (accessibility)", "default": "Previous colours" },
+    { "type": "text", "id": "next_label", "label": "Next button label (accessibility)", "default": "Next colours" },
+    { "type": "range", "id": "items_per_slide", "min": 2, "max": 6, "step": 1, "label": "Items visible per slide (desktop)", "default": 6 },
+    { "type": "header", "content": "Swatch style" },
+    { "type": "range", "id": "swatch_size", "min": 100, "max": 300, "step": 10, "unit": "px", "label": "Swatch circle size (desktop)", "default": 230 },
+    { "type": "color", "id": "swatch_background", "label": "Swatch background", "default": "#F2EFEB" },
+    { "type": "color", "id": "color_name_color", "label": "Colour name text", "default": "#44362B" },
+    { "type": "header", "content": "Navigation dots" },
+    { "type": "color", "id": "dot_active_color", "label": "Active dot colour", "default": "#B0976D" },
+    { "type": "color", "id": "dot_inactive_color", "label": "Inactive dot colour", "default": "#E3E3E3" },
+    { "type": "header", "content": "Colours & spacing" },
+    { "type": "color", "id": "heading_color", "label": "Heading colour", "default": "#101828" },
+    { "type": "color", "id": "background_color", "label": "Section background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top (desktop)", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom (desktop)", "default": 80 },
+    { "type": "range", "id": "padding_top_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding top (mobile)", "default": 40 },
+    { "type": "range", "id": "padding_bottom_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding bottom (mobile)", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "colour",
+      "name": "Colour swatch",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Swatch image" },
+        { "type": "color", "id": "swatch_color", "label": "Fallback swatch colour", "default": "#B0976D" },
+        { "type": "text", "id": "color_name", "label": "Colour name", "default": "Colour Name" },
+        { "type": "url", "id": "url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Colour Carousel",
+      "settings": {
+        "heading": "The Colours of Chasseur",
+        "items_per_slide": 6,
+        "swatch_size": 230,
+        "swatch_background": "#F2EFEB",
+        "color_name_color": "#44362B",
+        "dot_active_color": "#B0976D",
+        "dot_inactive_color": "#E3E3E3",
+        "heading_color": "#101828",
+        "background_color": "#FFFFFF",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      },
+      "blocks": [
+        { "type": "colour", "settings": { "color_name": "Azure", "swatch_color": "#4A90A4" } },
+        { "type": "colour", "settings": { "color_name": "Forest", "swatch_color": "#3A5A40" } },
+        { "type": "colour", "settings": { "color_name": "Bordeaux", "swatch_color": "#7B2D42" } },
+        { "type": "colour", "settings": { "color_name": "Peppermint", "swatch_color": "#A8D5C2" } },
+        { "type": "colour", "settings": { "color_name": "Wisteria", "swatch_color": "#B89AC8" } },
+        { "type": "colour", "settings": { "color_name": "Sunset", "swatch_color": "#E8764A" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

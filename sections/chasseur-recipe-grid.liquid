@@ -1,0 +1,173 @@
+{{ 'section-chasseur-recipe-grid.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="chasseur-recipe-grid"
+  style="
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+    --section-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --section-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --columns-desktop: {{ section.settings.columns_desktop }};
+    --columns-mobile: {{ section.settings.columns_mobile }};
+    --item-gap: {{ section.settings.item_gap }}px;
+    --card-bg: {{ section.settings.card_background }};
+    --card-border-color: {{ section.settings.card_border_color }};
+    --card-radius: {{ section.settings.card_border_radius }}px;
+    --card-padding: {{ section.settings.card_padding }}px;
+    --card-title-color: {{ section.settings.card_title_color }};
+    --card-text-color: {{ section.settings.card_text_color }};
+    --btn-border-color: {{ section.settings.button_border_color }};
+    --btn-text-color: {{ section.settings.button_text_color }};
+    --btn-radius: {{ section.settings.button_border_radius }}px;
+    --section-bg: {{ section.settings.background_color }};
+  "
+>
+  <div class="chasseur-recipe-grid__inner page-width">
+
+    {%- if section.settings.section_heading != blank -%}
+      <div class="chasseur-recipe-grid__header">
+        <h2 class="chasseur-recipe-grid__heading">{{ section.settings.section_heading | escape }}</h2>
+        {%- if section.settings.section_subheading != blank -%}
+          <p class="chasseur-recipe-grid__subheading">{{ section.settings.section_subheading | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="chasseur-recipe-grid__grid">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'recipe' -%}
+            <article class="chasseur-recipe-card" {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.recipe_url | default: '#' }}" class="chasseur-recipe-card__img-link" tabindex="-1" aria-hidden="true">
+                <div class="chasseur-recipe-card__img-wrap">
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 960
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'chasseur-recipe-card__img',
+                        widths: '480, 640, 960',
+                        sizes: '(min-width: 990px) 480px, (min-width: 750px) 50vw, 100vw',
+                        alt: block.settings.image.alt | escape
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'chasseur-recipe-card__img chasseur-recipe-card__img--placeholder' }}
+                  {%- endif -%}
+                </div>
+              </a>
+              <div class="chasseur-recipe-card__body">
+                {%- if block.settings.title != blank -%}
+                  <h3 class="chasseur-recipe-card__title">
+                    <a href="{{ block.settings.recipe_url | default: '#' }}">{{ block.settings.title | escape }}</a>
+                  </h3>
+                {%- endif -%}
+                {%- if block.settings.excerpt != blank -%}
+                  <p class="chasseur-recipe-card__excerpt">{{ block.settings.excerpt | escape }}</p>
+                {%- endif -%}
+                {%- if block.settings.button_label != blank -%}
+                  <a href="{{ block.settings.recipe_url | default: '#' }}" class="chasseur-recipe-card__btn" aria-label="{{ block.settings.button_label | escape }}: {{ block.settings.title | escape }}">
+                    <span>{{ block.settings.button_label | escape }}</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                {%- endif -%}
+              </div>
+            </article>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="chasseur-recipe-grid__cta">
+        <a href="{{ section.settings.button_url | default: '#' }}" class="chasseur-recipe-grid__cta-btn">
+          {{ section.settings.button_label | escape }}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Recipe Grid",
+  "tag": "section",
+  "class": "shopify-section--chasseur-recipe-grid",
+  "settings": [
+    { "type": "header", "content": "Section heading" },
+    { "type": "text", "id": "section_heading", "label": "Heading" },
+    { "type": "text", "id": "section_subheading", "label": "Subheading" },
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "columns_desktop", "min": 1, "max": 4, "step": 1, "label": "Columns (desktop)", "default": 3 },
+    { "type": "range", "id": "columns_mobile", "min": 1, "max": 3, "step": 1, "label": "Columns (mobile)", "default": 1 },
+    { "type": "range", "id": "item_gap", "min": 16, "max": 60, "step": 2, "unit": "px", "label": "Gap between cards", "default": 30 },
+    { "type": "header", "content": "Card style" },
+    { "type": "color", "id": "card_background", "label": "Card background", "default": "#F2EFEB" },
+    { "type": "color", "id": "card_border_color", "label": "Card border colour", "default": "#D6D6D6" },
+    { "type": "range", "id": "card_border_radius", "min": 0, "max": 24, "step": 1, "unit": "px", "label": "Card border radius", "default": 13 },
+    { "type": "range", "id": "card_padding", "min": 12, "max": 40, "step": 2, "unit": "px", "label": "Card content padding", "default": 20 },
+    { "type": "color", "id": "card_title_color", "label": "Title colour", "default": "#3C2D25" },
+    { "type": "color", "id": "card_text_color", "label": "Excerpt colour", "default": "#44362B" },
+    { "type": "header", "content": "Card button" },
+    { "type": "color", "id": "button_border_color", "label": "Button border colour", "default": "#987E52" },
+    { "type": "color", "id": "button_text_color", "label": "Button text colour", "default": "#44362B" },
+    { "type": "range", "id": "button_border_radius", "min": 0, "max": 24, "step": 2, "unit": "px", "label": "Button border radius", "default": 12 },
+    { "type": "header", "content": "Section CTA" },
+    { "type": "text", "id": "button_label", "label": "Button label", "info": "Leave blank to hide" },
+    { "type": "url", "id": "button_url", "label": "Button URL" },
+    { "type": "header", "content": "Background & spacing" },
+    { "type": "color", "id": "background_color", "label": "Section background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top (desktop)", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom (desktop)", "default": 80 },
+    { "type": "range", "id": "padding_top_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding top (mobile)", "default": 40 },
+    { "type": "range", "id": "padding_bottom_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding bottom (mobile)", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "recipe",
+      "name": "Recipe card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Recipe image" },
+        { "type": "text", "id": "title", "label": "Recipe title", "default": "Recipe Title" },
+        { "type": "textarea", "id": "excerpt", "label": "Short description", "default": "A brief description of this delicious recipe made with Chasseur cast iron cookware." },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "View Recipe" },
+        { "type": "url", "id": "recipe_url", "label": "Recipe URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recipe Grid",
+      "settings": {
+        "columns_desktop": 3,
+        "columns_mobile": 1,
+        "item_gap": 30,
+        "card_background": "#F2EFEB",
+        "card_border_color": "#D6D6D6",
+        "card_border_radius": 13,
+        "card_padding": 20,
+        "card_title_color": "#3C2D25",
+        "card_text_color": "#44362B",
+        "button_border_color": "#987E52",
+        "button_text_color": "#44362B",
+        "button_border_radius": 12,
+        "background_color": "#FFFFFF",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      },
+      "blocks": [
+        { "type": "recipe", "settings": { "title": "Greek Easter Bread - Tsoureki", "excerpt": "This Tsoureki is a Traditional Greek Sweet Yeast Bread that represents the Holy Trinity through the three-part braid of the bread. Include decorated hard-boiled eggs to decorate!", "button_label": "View Recipe" } },
+        { "type": "recipe", "settings": { "title": "Passionfruit Soufflé", "excerpt": "A classic French baked egg dish originating in France that is adored the world over. This dessert version is a light, sweet soufflé suitable for any time of year.", "button_label": "View Recipe" } },
+        { "type": "recipe", "settings": { "title": "Cherry and Apple Crumble", "excerpt": "A classic French baked dessert that is adored the world over. This version is a light, sweet crumble that is suitable for any time of year.", "button_label": "View Recipe" } },
+        { "type": "recipe", "settings": { "title": "Chicken Chasseur", "excerpt": "Chicken Chasseur has stood the test of time as a traditional French dish that evokes the charm of the countryside and the ingenuity of French cuisine over centuries.", "button_label": "View Recipe" } },
+        { "type": "recipe", "settings": { "title": "Roasted Beetroot and Cauliflower Warm Salad", "excerpt": "A beautiful warm salad full of colour and flavour. Roasted in your Chasseur cast iron for perfect caramelisation every time.", "button_label": "View Recipe" } },
+        { "type": "recipe", "settings": { "title": "Maple Glazed Salmon with Pomegranate", "excerpt": "This beautiful maple glazed salmon dish is a brilliant, light Summer meal that is sure to be a hit on any dinner table this season.", "button_label": "View Recipe" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

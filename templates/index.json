@@ -1,210 +1,334 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "banner": {
+      "type": "chasseur-page-banner",
+      "settings": {
+        "heading": "Cast Iron Day-to-Day",
+        "show_breadcrumbs": true,
+        "breadcrumb_home": "Home",
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
+        "heading_color": "#FFFFFF",
+        "breadcrumb_color": "#FFFFFF",
+        "separator_color": "#E0DAD7",
+        "banner_height": 300,
+        "banner_height_mobile": 200
+      }
+    },
+    "intro": {
+      "type": "chasseur-cast-iron-intro",
+      "settings": {
+        "eyebrow": "LA MAISON CHASSEUR",
+        "heading": "Chasseur cast iron day-to-day",
+        "body": "<p>Chasseur have been crafting its famous cast-iron casseroles and cast-iron cookware in its foundry in the Champagne Ardennes region of France, established in 1924. Chasseur continues to honour its traditional techniques to this day — producing cast-iron cookware in individual sand moulds and spray painting the enamel coatings by hand — making each piece unique.</p>",
+        "background_color": "#F2EFEB",
+        "background_image_opacity": 50,
+        "eyebrow_color": "#44362B",
+        "heading_color": "#1B1918",
+        "body_color": "#44362B",
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
+      }
+    },
+    "benefits": {
+      "type": "chasseur-benefits-split",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "b1": {
+          "type": "benefit",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
+            "eyebrow": "Heat Retention",
+            "heading": "Dishes stay hot at the table",
+            "body": "<p>Enamelled cast iron warms gradually, accumulates heat evenly, and retains it for a long time — so meals arrive perfectly warm and stay that way throughout dinner.</p>",
+            "image_position": "right",
+            "panel_color": "#353131",
+            "gradient_color": "#DED6CC",
+            "eyebrow_color": "#FFFFFF",
+            "heading_color": "#FFFFFF",
+            "body_color": "#E3E3E3"
           }
         },
-        "text": {
-          "type": "text",
+        "b2": {
+          "type": "benefit",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "eyebrow": "Moisture Lock",
+            "heading": "Moist and delicious cooking",
+            "body": "<p>Enamelled cast iron is perfect for grilling, sautéing, roasting... and stewing. After the food has been braised, the water vapour from the stew condenses upon contact with the cooler lid and forms droplets. These droplets then proceed to evenly and continuously baste the food thanks to the ridges inside the lid.</p>",
+            "image_position": "left",
+            "panel_color": "#353131",
+            "gradient_color": "#DED6CC",
+            "eyebrow_color": "#FFFFFF",
+            "heading_color": "#FFFFFF",
+            "body_color": "#E3E3E3"
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
+      "block_order": ["b1", "b2"],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     },
-    "rich_text": {
-      "type": "rich-text",
+    "heat-sources": {
+      "type": "chasseur-heat-sources",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "hs1": {
+          "type": "source",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "label": "INDUCTION"
           }
         },
-        "text": {
-          "type": "text",
+        "hs2": {
+          "type": "source",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "label": "GAS"
+          }
+        },
+        "hs3": {
+          "type": "source",
+          "settings": {
+            "label": "ELECTRICITY"
+          }
+        },
+        "hs4": {
+          "type": "source",
+          "settings": {
+            "label": "VITROCERAMIC\n(RADIANT)"
+          }
+        },
+        "hs5": {
+          "type": "source",
+          "settings": {
+            "label": "VITROCERAMIC\n(HALOGEN)"
+          }
+        },
+        "hs6": {
+          "type": "source",
+          "settings": {
+            "label": "OVEN"
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text"
-      ],
+      "block_order": ["hs1", "hs2", "hs3", "hs4", "hs5", "hs6"],
       "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
+        "eyebrow": "Universal Compatibility",
+        "heading": "Compatible with All Heat Sources",
+        "background_color": "#353131",
+        "eyebrow_color": "#FFFFFF",
+        "heading_color": "#FFFFFF",
+        "label_color": "#FFFFFF",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 28,
-        "padding_bottom": 36
-      }
-    },
-    "collage": {
-      "type": "collage",
+    "craftsmanship": {
+      "type": "chasseur-craftsmanship",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "cr1": {
+          "type": "card",
           "settings": {
-            "collection": ""
+            "label": "SUSTAINABLE BY DESIGN",
+            "card_heading": "Environmentally friendly",
+            "body": "<p>Enamelled cast iron is durable and 100% recyclable. Chasseur uses locally sourced raw materials — and the enamelled iron at the core of every piece comes from France.</p>",
+            "footnote": "Manufactured to the highest environmental standards in our French foundry."
           }
         },
-        "product": {
-          "type": "product",
+        "cr2": {
+          "type": "card",
           "settings": {
-            "product": "",
-            "second_image": false
-          }
-        },
-        "collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
+            "label": "LIFETIME ASSURANCE",
+            "card_heading": "Cookware with a lifetime guarantee",
+            "body": "<p>Chasseur is proud of the manufacturing quality of its products. Our cookware is built to last a lifetime — and we stand fully behind that promise.</p>",
+            "footnote": "A lifetime guarantee is offered if the instructions for use and maintenance described in the manual are followed."
           }
         }
       },
-      "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
-      ],
+      "block_order": ["cr1", "cr2"],
       "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "Craftsmanship You Can Trust",
+        "background_color": "#FFFFFF",
+        "heading_color": "#1B1918",
+        "card_background": "#F2EFEB",
+        "card_border_color": "#D6D6D6",
+        "icon_bg_color": "#857B7A",
+        "label_color": "#44362B",
+        "card_title_color": "#3C2D25",
+        "card_body_color": "#44362B",
+        "footnote_color": "#000000",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     },
-    "video": {
-      "type": "video",
-      "settings": {
-        "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
+    "recipes": {
+      "type": "chasseur-recipe-grid",
       "blocks": {
-        "column1": {
-          "type": "column",
+        "r1": {
+          "type": "recipe",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "title": "Greek Easter Bread - Tsoureki",
+            "excerpt": "This Tsoureki is a Traditional Greek Sweet Yeast Bread that represents the Holy Trinity through the three-part braid of the bread. Include decorated hard-boiled eggs to decorate!",
+            "button_label": "View Recipe"
           }
         },
-        "column2": {
-          "type": "column",
+        "r2": {
+          "type": "recipe",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "title": "Passionfruit Soufflé",
+            "excerpt": "A classic French baked egg dish originating in France that is adored the world over. This dessert version is a light, sweet soufflé suitable for any time of year.",
+            "button_label": "View Recipe"
           }
         },
-        "column3": {
-          "type": "column",
+        "r3": {
+          "type": "recipe",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "title": "Cherry and Apple Crumble",
+            "excerpt": "A classic French baked dessert that is adored the world over. This version is a light, sweet crumble that is suitable for any time of year.",
+            "button_label": "View Recipe"
+          }
+        },
+        "r4": {
+          "type": "recipe",
+          "settings": {
+            "title": "Chicken Chasseur",
+            "excerpt": "Chicken Chasseur has stood the test of time as a traditional French dish that evokes the charm of the countryside and the ingenuity of French cuisine over centuries.",
+            "button_label": "View Recipe"
+          }
+        },
+        "r5": {
+          "type": "recipe",
+          "settings": {
+            "title": "Roasted Beetroot and Cauliflower Warm Salad",
+            "excerpt": "A beautiful warm salad full of colour and flavour. Roasted in your Chasseur cast iron for perfect caramelisation every time.",
+            "button_label": "View Recipe"
+          }
+        },
+        "r6": {
+          "type": "recipe",
+          "settings": {
+            "title": "Maple Glazed Salmon with Pomegranate",
+            "excerpt": "This beautiful maple glazed salmon dish is a brilliant, light Summer meal that is sure to be a hit on any dinner table this season.",
+            "button_label": "View Recipe"
           }
         }
       },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"],
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
         "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "columns_mobile": 1,
+        "item_gap": 30,
+        "card_background": "#F2EFEB",
+        "card_border_color": "#D6D6D6",
+        "card_border_radius": 13,
+        "card_padding": 20,
+        "card_title_color": "#3C2D25",
+        "card_text_color": "#44362B",
+        "button_border_color": "#987E52",
+        "button_text_color": "#44362B",
+        "button_border_radius": 12,
+        "background_color": "#FFFFFF",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "colours": {
+      "type": "chasseur-colour-carousel",
+      "blocks": {
+        "c1": {
+          "type": "colour",
+          "settings": {
+            "color_name": "Azure",
+            "swatch_color": "#4A90A4"
+          }
+        },
+        "c2": {
+          "type": "colour",
+          "settings": {
+            "color_name": "Forest",
+            "swatch_color": "#3A5A40"
+          }
+        },
+        "c3": {
+          "type": "colour",
+          "settings": {
+            "color_name": "Bordeaux",
+            "swatch_color": "#7B2D42"
+          }
+        },
+        "c4": {
+          "type": "colour",
+          "settings": {
+            "color_name": "Peppermint",
+            "swatch_color": "#A8D5C2"
+          }
+        },
+        "c5": {
+          "type": "colour",
+          "settings": {
+            "color_name": "Wisteria",
+            "swatch_color": "#B89AC8"
+          }
+        },
+        "c6": {
+          "type": "colour",
+          "settings": {
+            "color_name": "Sunset",
+            "swatch_color": "#E8764A"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"],
+      "settings": {
+        "heading": "The Colours of Chasseur",
+        "prev_label": "Previous colours",
+        "next_label": "Next colours",
+        "items_per_slide": 6,
+        "swatch_size": 230,
+        "swatch_background": "#F2EFEB",
+        "color_name_color": "#44362B",
+        "dot_active_color": "#B0976D",
+        "dot_inactive_color": "#E3E3E3",
+        "heading_color": "#101828",
+        "background_color": "#FFFFFF",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "manufacturing": {
+      "type": "chasseur-manufacturing",
+      "settings": {
+        "left_gradient_start": "#DED6CC",
+        "right_background": "#353131",
+        "eyebrow": "Our History",
+        "eyebrow_color": "#FFFFFF",
+        "heading": "Manufacturing Chasseur",
+        "heading_color": "#FFFFFF",
+        "body": "<p>Chasseur's history is rooted in the very heart of the Ardennes, during the belle époque. Or, more precisely, in 1924 when the Invicta foundry was established in the Meuse Valley, a major centre for metallurgy. Founded by Fernand Sueur, the company would go on to remain a family business for nearly 90 years. The production sites have been located in Donchery and Vivier-au-court since the very beginning.</p>",
+        "body_color": "#E3E3E3",
+        "image_position": "left",
+        "section_height": 520,
+        "section_height_mobile": 400
       }
     }
   },
   "order": [
-    "image_banner",
-    "rich_text",
-    "featured_collection",
-    "collage",
-    "video",
-    "multicolumn"
+    "banner",
+    "intro",
+    "benefits",
+    "heat-sources",
+    "craftsmanship",
+    "recipes",
+    "colours",
+    "manufacturing"
   ]
 }

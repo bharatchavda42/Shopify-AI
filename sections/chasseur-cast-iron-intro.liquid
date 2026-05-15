@@ -1,0 +1,112 @@
+{{ 'section-chasseur-cast-iron-intro.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bg_opacity = section.settings.background_image_opacity | divided_by: 100.0
+-%}
+
+<section
+  class="chasseur-cast-iron-intro"
+  style="
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+    --section-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --section-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --section-bg: {{ section.settings.background_color }};
+    --bg-image-opacity: {{ bg_opacity }};
+    --eyebrow-color: {{ section.settings.eyebrow_color }};
+    --heading-color: {{ section.settings.heading_color }};
+    --body-color: {{ section.settings.body_color }};
+  "
+>
+  {%- if section.settings.background_image != blank -%}
+    <div class="chasseur-cast-iron-intro__bg-image">
+      {{
+        section.settings.background_image
+        | image_url: width: 1920
+        | image_tag:
+          loading: 'lazy',
+          class: 'chasseur-cast-iron-intro__bg-img',
+          widths: '750, 1024, 1440, 1920',
+          sizes: '100vw',
+          alt: ''
+      }}
+      <div class="chasseur-cast-iron-intro__bg-gradient"></div>
+    </div>
+  {%- endif -%}
+
+  <div class="chasseur-cast-iron-intro__inner page-width">
+    <div class="chasseur-cast-iron-intro__content">
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="chasseur-cast-iron-intro__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="chasseur-cast-iron-intro__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <div class="chasseur-cast-iron-intro__body">{{ section.settings.body }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_url | default: '#' }}" class="chasseur-cast-iron-intro__btn">
+          {{ section.settings.button_label | escape }}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cast Iron Intro",
+  "tag": "section",
+  "class": "shopify-section--chasseur-cast-iron-intro",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label", "default": "LA MAISON CHASSEUR" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Chasseur cast iron day-to-day" },
+    { "type": "richtext", "id": "body", "label": "Body text", "default": "<p>Chasseur have been crafting its famous cast-iron casseroles and cast-iron cookware in its foundry in the Champagne Ardennes region of France, established in 1924. Chasseur continues to honour its traditional techniques to this day — producing cast-iron cookware in individual sand moulds and spray painting the enamel coatings by hand — making each piece unique.</p>" },
+    { "type": "header", "content": "CTA button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "info": "Leave blank to hide" },
+    { "type": "url", "id": "button_url", "label": "Button URL" },
+    { "type": "header", "content": "Background" },
+    { "type": "color", "id": "background_color", "label": "Background colour", "default": "#F2EFEB" },
+    { "type": "image_picker", "id": "background_image", "label": "Background image (decorative)" },
+    { "type": "range", "id": "background_image_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Background image opacity", "default": 50 },
+    { "type": "header", "content": "Text colours" },
+    { "type": "color", "id": "eyebrow_color", "label": "Eyebrow colour", "default": "#44362B" },
+    { "type": "color", "id": "heading_color", "label": "Heading colour", "default": "#1B1918" },
+    { "type": "color", "id": "body_color", "label": "Body text colour", "default": "#44362B" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top (desktop)", "default": 52 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom (desktop)", "default": 52 },
+    { "type": "range", "id": "padding_top_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding top (mobile)", "default": 32 },
+    { "type": "range", "id": "padding_bottom_mobile", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding bottom (mobile)", "default": 32 }
+  ],
+  "presets": [
+    {
+      "name": "Cast Iron Intro",
+      "settings": {
+        "eyebrow": "LA MAISON CHASSEUR",
+        "heading": "Chasseur cast iron day-to-day",
+        "body": "<p>Chasseur have been crafting its famous cast-iron casseroles and cast-iron cookware in its foundry in the Champagne Ardennes region of France, established in 1924. Chasseur continues to honour its traditional techniques to this day — producing cast-iron cookware in individual sand moulds and spray painting the enamel coatings by hand — making each piece unique.</p>",
+        "background_color": "#F2EFEB",
+        "background_image_opacity": 50,
+        "eyebrow_color": "#44362B",
+        "heading_color": "#1B1918",
+        "body_color": "#44362B",
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
+      }
+    }
+  ]
+}
+{% endschema %}
